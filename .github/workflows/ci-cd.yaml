@@ -1,0 +1,54 @@
+name: Pipeline-aula-github-actions
+
+on:
+  pull_request:
+    branches:
+      - main
+      - develop
+      - staging
+      - feature/*
+      - hotfix/*
+      - release/*
+
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - 'docs/**'
+      - 'scripts/*.sh'
+    tags:
+      - v1.*
+
+  schedule:
+    - cron: '30 5,17 * * 0'
+
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Ambiente de deploy'
+        required: true
+        default: 'dev'
+
+env:
+  environment: 'dev'
+
+jobs:
+  manual_test_pipeline:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: checkout
+        uses: actions/checkout@v4
+
+      - name: command
+        run: echo "teste de pipeline manual"
+
+      - name: build my app
+        run: echo "building my app"
+
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Build step
+        run: echo "Build job placeholder"
