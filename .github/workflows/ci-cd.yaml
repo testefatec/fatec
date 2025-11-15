@@ -41,7 +41,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: command
-        run: echo "teste de pipeline manual"
+        run: echo "teste de pipeline manual 2"
 
       - name: build my app
         run: echo "building my app"
