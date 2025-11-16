@@ -1,0 +1,107 @@
+# =============================================================================
+# CONFIGURAÇÃO CODEQL - FATEC
+# =============================================================================
+# Este arquivo personaliza a análise de segurança do CodeQL
+# Documentação: https://docs.github.com/en/code-security/code-scanning/automatically-scanning-your-code-for-vulnerabilities-and-errors/customizing-code-scanning
+# =============================================================================
+
+name: "CodeQL Config - Análise de Segurança Python"
+
+# -----------------------------------------------------------------------------
+# QUERIES: Define quais conjuntos de regras serão executados
+# -----------------------------------------------------------------------------
+queries:
+  # Queries de segurança estendidas (recomendado)
+  # Inclui regras para detectar vulnerabilidades comuns
+  - uses: security-extended
+  
+  # Queries de segurança E qualidade de código
+  # Adiciona verificações de boas práticas de programação
+  - uses: security-and-quality
+
+# -----------------------------------------------------------------------------
+# CAMINHOS: Define quais arquivos serão analisados
+# -----------------------------------------------------------------------------
+paths:
+  # Analisa todos os arquivos Python no repositório
+  - '**/*.py'
+  
+  # Você pode especificar diretórios específicos
+  # - 'src/**/*.py'
+  # - 'app/**/*.py'
+
+# -----------------------------------------------------------------------------
+# CAMINHOS IGNORADOS: Arquivos que NÃO serão analisados
+# -----------------------------------------------------------------------------
+paths-ignore:
+  # Ignora arquivos de teste (opcional - remova se quiser analisar testes)
+  - '**/test_*.py'
+  - '**/tests/**'
+  - '**/*_test.py'
+  
+  # Ignora ambientes virtuais
+  - '**/venv/**'
+  - '**/virtualenv/**'
+  - '**/.env/**'
+  - '**/env/**'
+  
+  # Ignora dependências de terceiros
+  - '**/site-packages/**'
+  - '**/node_modules/**'
+  
+  # Ignora arquivos de configuração e build
+  - '**/build/**'
+  - '**/dist/**'
+  - '**/.tox/**'
+  - '**/__pycache__/**'
+  - '**/*.pyc'
+  
+  # Ignora documentação gerada
+  - '**/docs/**'
+  - '**/*.md'
+
+# -----------------------------------------------------------------------------
+# QUERIES CUSTOMIZADAS (opcional)
+# -----------------------------------------------------------------------------
+# Você pode adicionar suas próprias queries personalizadas
+# query-filters:
+#   - include:
+#       kind: problem
+#       precision: high
+
+# -----------------------------------------------------------------------------
+# CONFIGURAÇÕES ADICIONAIS
+# -----------------------------------------------------------------------------
+
+# Desabilita queries específicas (se necessário)
+# disable-default-queries: false
+
+# Limite de tempo para análise (em segundos)
+# timeout: 3600
+
+# =============================================================================
+# CATEGORIAS DE VULNERABILIDADES DETECTADAS PELO CODEQL:
+# =============================================================================
+#
+# 🔴 CRITICAL & HIGH:
+# - SQL Injection (CWE-89)
+# - Command Injection (CWE-78)
+# - Path Traversal (CWE-22)
+# - Cross-Site Scripting - XSS (CWE-79)
+# - Remote Code Execution (CWE-94)
+# - Deserialization of Untrusted Data (CWE-502)
+# - Use of Hard-coded Credentials (CWE-798)
+#
+# 🟠 MEDIUM:
+# - Weak Cryptographic Algorithm (CWE-327)
+# - Missing Encryption of Sensitive Data (CWE-311)
+# - Improper Input Validation (CWE-20)
+# - Insecure Random Number Generation (CWE-338)
+# - Use of Insecure Function (CWE-676)
+#
+# 🟡 LOW:
+# - Code Quality Issues
+# - Performance Issues
+# - Maintainability Issues
+#
+# =============================================================================
