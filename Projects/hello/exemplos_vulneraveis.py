@@ -211,7 +211,7 @@ COMO TESTAR O CODEQL:
 
 EXERCÍCIO PRÁTICO:
 - Descomente o EXEMPLO 1 (SQL Injection)
-- Faça commit: git add . && git commit -m "Teste: código vulnerável"
+- Faça commit: git add SQL_INJECTION.py && git commit -m "Add SQL_INJECTION.py"
 - Push: git push
 - Observe o CodeQL detectar a vulnerabilidade!
 - Corrija usando a versão segura
