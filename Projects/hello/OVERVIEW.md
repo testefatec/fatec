@@ -272,4 +272,4 @@ Antes de fazer deploy, certifique-se:
 
 **Criado para os alunos da FATEC** 🎓  
 **Desenvolvimento de Sistemas** 💻  
-**Professor: [Seu Nome]** 👨‍🏫
+**Professor: [Idirley Soares]** 👨‍🏫
